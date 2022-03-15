@@ -1,0 +1,94 @@
+Text engine Documentation:
+
+All functions are explained below. They are categorized by class.
+
+the "core" class:
+	the "render_simple_text" function:
+		This function is used to write one line of text.  It takes a Name and a Text as arguments.
+		If the name it set to "desc" the name will be blank.
+		
+		example: core.render_simple_text("example_name", "this is some example text.")
+		output:  => example_name: this is some example text.
+	
+	the "render_multi_text" function:
+		This function writes multipler lines of text at once. It takes a Name and an array of Texts as arguments.
+		If the name it set to "desc" the name will be blank.
+
+		example: core.render_multi_text("example_name", texts=["example 1", "example 2", "exampel 3"])
+		output:  example_name: example 1
+			 example_name: exampel 3
+			 =>
+
+the "dialog" class:
+	the "main_text" function:
+		This function gives the user 3 possible options to choose from. It takes a Name, Initial text,
+		option1,option2,option3,dialog1,dialog2 and dialog3 as arguments. After choosing an option the number of the 
+		respone (1,2 or 3) will be returned.
+		
+		example: dialog.main_text("example_name", "example_initial_text", "example_option1", "example_option2",
+			 "example_option3", "example_dialog1", "example_dialog2", "example_dialog3")
+		output:  example_name: example_initial_text
+			 1 example_option1
+			 2 example_option2
+			 3 example_option3
+			 [enter 1, 2 or 3] =>
+
+the "path" class:
+	the "add_path" function:
+		This function lets you add branches to your project. It works similar to the "dialog" function beacuase it
+		also gives the user choices the choose  from. Other than the "dialog" function, you are not limited to
+		3 possible outcomes and can add as much paths as you need. This function takes some paths as argument. 
+		It will return the item of the chosen path. Using this function with "if-statements" is a good use case.
+
+		example: 
+			opt1  = "choose option one"
+			opt2 =  "choose option two"
+
+			path1 = path.add_path(paths=[opt1, opt2]
+			if path1 == opt1:
+				print("you choose option one")
+			elif path1 == opt2:
+				print("you choose option two")
+			else:
+				print("Ugh, you can never decide on anything.")
+
+the "goal_system" class:
+	the "give_goal" function:
+		This function can give the user an goal/quest/objective/etc. It takes a Name from the character giving it
+		and one line of text to display.
+	
+		example: goal_system.give_goal("example_character_name", "example_text")
+		output:  => example_character_name: example_text
+	
+	the "complete_goal" function:
+		This function completes a goal given by the "give_goal" function. It takes a text to display. A name is 
+		not needed.
+		
+		example: goal_system.complete_goal("example_goal_completed_text")
+		output:  => example_goal_completed_text
+
+the "art" class:
+	the "intro_render" funcion:
+		This function gives you the ability to render a little into ASII-Art but you only have 6 total lines
+		avalible. It takes 6 lines of text to render.
+
+		example: art.intro_render("row1","row2","row3","row4","row5","row6")
+
+	the "art_loader" function:
+		This function gives you the ability to render ASII-Art but you only have 12 total lines
+		avalible. It takes 12 lines of text to render.
+
+		example: art.art_loader("row1","row2","row3","row4","row5","row6","row7","row8","row9","row10",
+			 "row11","row12")
+
+the "audio" class:
+	the "play_sound" function:
+		This function will play a sound. It takes only the filename (not the extention) as arguments. The
+		sound-file MUSt be in the same folder as the project. Using ".wav" files is advised.
+		
+		example: audio.play_sound("example_sound_filename")
+
+	the "play_beep_sound" function:
+		This function makes a "beep" sound. It takes a frequency and an duration as arguments.
+		
+		example: audio.play_beep_sound(beep_frequency,beep_duration) 
